@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 //Components:
+import Item from './Item/Item';
 import Drawer from '@material-ui/core/Drawer';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Badge from '@material-ui/core/Badge';
@@ -32,9 +33,14 @@ const App = () => {
   if (isLoading) return <LinearProgress />;
   if (error) return <div> <p>Something Went Wrong...</p></div>;
   return (
-    <div className="App">
-      APP
-    </div>
+    <Wrapper>
+      <Grid container spacing={3}>
+        {data?.map(product => (
+          <Grid item key={product.id} xs={12} sm={4}>
+            <Item item={product} handleAddToCart={ handleAddToCart}/>
+        </Grid>) )}
+      </Grid>
+    </Wrapper>
   );
 }
 
