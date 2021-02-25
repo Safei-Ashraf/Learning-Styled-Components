@@ -27,10 +27,10 @@ const App = () => {
   const { data, isLoading, error } = useQuery<ProductType[]>('products', getProducts);
   console.log(data);
   const getTotalItems = () => null;
-  const handleAddToCart = () => null;
+  const handleAddToCart = ( clickedProduct : ProductType) => null;
   const handleRemoveFromCart = () => null;
   if (isLoading) return <LinearProgress />;
-  if (error) return <div> <p>Something Went Wrong</p></div>;
+  if (error) return <div> <p>Something Went Wrong...</p></div>;
   return (
     <div className="App">
       APP
