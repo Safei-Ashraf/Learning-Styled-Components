@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 //Styles
 import { Wrapper } from './App.styles';
-import { red } from '@material-ui/core/colors';
+import './index.css';
 //Types:
 export type ProductType = {
   id: number;
@@ -25,6 +25,8 @@ const getProducts = async (): Promise<ProductType[]> => {
   return await (await fetch('https://fakestoreapi.com/products')).json();
 }
 const App = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]as ProductType[])
   const { data, isLoading, error } = useQuery<ProductType[]>('products', getProducts);
   console.log(data);
   const getTotalItems = () => null;
