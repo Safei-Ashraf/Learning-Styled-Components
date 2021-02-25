@@ -9,7 +9,7 @@ import Badge from '@material-ui/core/Badge';
 import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 //Styles
-import { Wrapper } from './App.styles';
+import { Wrapper,StyledButton } from './App.styles';
 import './index.css';
 //Types:
 export type ProductType = {
@@ -29,13 +29,21 @@ const App = () => {
   const [cartItems, setCartItems] = useState([]as ProductType[])
   const { data, isLoading, error } = useQuery<ProductType[]>('products', getProducts);
   console.log(data);
-  const getTotalItems = () => null;
+  const getTotalItems = (items: ProductType[]) => null;
   const handleAddToCart = ( clickedProduct : ProductType) => null;
   const handleRemoveFromCart = () => null;
   if (isLoading) return <LinearProgress />;
   if (error) return <div> <p>Something Went Wrong...</p></div>;
   return (
     <Wrapper>
+      <Drawer anchor='right' open={isCartOpen} onClose={()=>setIsCartOpen(false)}>
+        CART
+      </Drawer>
+      <StyledButton onClick={() => setIsCartOpen(true)}>
+        <Badge badgeContent={getTotalItems(cartItems)}  color="error">
+          <AddShoppingCartIcon/>
+        </Badge>
+      </StyledButton>
       <Grid container spacing={3}>
         {data?.map(product => (
           <Grid item key={product.id} xs={12} sm={6} md={3}>
