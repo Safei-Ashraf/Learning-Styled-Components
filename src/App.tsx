@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 //Styles
 import { Wrapper } from './App.styles';
+import { red } from '@material-ui/core/colors';
 //Types:
 export type ProductType = {
   id: number;
@@ -29,7 +30,7 @@ const App = () => {
   const handleAddToCart = () => null;
   const handleRemoveFromCart = () => null;
   if (isLoading) return <LinearProgress />;
-
+  if (error) return <div> <p>Something Went Wrong</p></div>;
   return (
     <div className="App">
       APP
