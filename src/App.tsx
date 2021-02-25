@@ -8,6 +8,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Badge from '@material-ui/core/Badge';
 import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import Cart from './Cart/Cart';
 //Styles
 import { Wrapper,StyledButton } from './App.styles';
 import './index.css';
@@ -19,6 +20,8 @@ export type ProductType = {
   category: string;
   description: string;
   image: string;
+  amount: number;
+
 }
 //API Call:
 const getProducts = async (): Promise<ProductType[]> => {
@@ -30,7 +33,7 @@ const App = () => {
   const { data, isLoading, error } = useQuery<ProductType[]>('products', getProducts);
   console.log(data);
   const getTotalItems = (items: ProductType[]) => (
-  items.reduce((acc:number, item)=> acc + item.price,0));
+  items.reduce((acc:number, item)=> acc + item.amount,0));
   const handleAddToCart = ( clickedProduct : ProductType) => null;
   const handleRemoveFromCart = () => null;
   if (isLoading) return <LinearProgress />;
@@ -38,7 +41,7 @@ const App = () => {
   return (
     <Wrapper>
       <Drawer anchor='right' open={isCartOpen} onClose={()=>setIsCartOpen(false)}>
-        CART
+        <Cart cartItems={cartItems} addToCart={handleAddToCart} removeFromCart={ handleRemoveFromCart}/>
       </Drawer>
       <StyledButton onClick={() => setIsCartOpen(true)}>
         <Badge badgeContent={getTotalItems(cartItems)}  color="error">
