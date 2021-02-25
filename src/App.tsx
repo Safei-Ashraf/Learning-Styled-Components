@@ -28,6 +28,7 @@ const App = () => {
   const getTotalItems = () => null;
   const handleAddToCart = () => null;
   const handleRemoveFromCart = () => null;
+  if (isLoading) return <LinearProgress />;
 
   return (
     <div className="App">
