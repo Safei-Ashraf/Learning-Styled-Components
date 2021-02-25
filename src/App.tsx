@@ -29,7 +29,8 @@ const App = () => {
   const [cartItems, setCartItems] = useState([]as ProductType[])
   const { data, isLoading, error } = useQuery<ProductType[]>('products', getProducts);
   console.log(data);
-  const getTotalItems = (items: ProductType[]) => null;
+  const getTotalItems = (items: ProductType[]) => (
+  items.reduce((acc:number, item)=> acc + item.price,0));
   const handleAddToCart = ( clickedProduct : ProductType) => null;
   const handleRemoveFromCart = () => null;
   if (isLoading) return <LinearProgress />;
