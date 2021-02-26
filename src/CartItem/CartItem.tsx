@@ -10,7 +10,7 @@ type Props = {
   removeFromCart: (id: number) => void;
 };
 
-const CartItem: React.FC<Props> = ({ item, addToCart, removeFromCart }) => (
+const CartItem = ({ item, addToCart, removeFromCart } : Props) => (
   <Wrapper>
     <div>
       <h3>{item.title}</h3>

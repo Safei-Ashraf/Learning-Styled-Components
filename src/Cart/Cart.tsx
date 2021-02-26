@@ -8,9 +8,9 @@ type Props = {
   removeFromCart: (id: number) => void;
 };
 
-const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
+const Cart = ({ cartItems, addToCart, removeFromCart }:Props) => {
   const calculateTotal = (items: ProductType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+    items.reduce((acc: number, item) => acc + item.amount * item.price, 0);
 
   return (
     <Wrapper>

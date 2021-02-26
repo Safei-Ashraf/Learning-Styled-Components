@@ -31,13 +31,19 @@ const App = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]as ProductType[])
   const { data, isLoading, error } = useQuery<ProductType[]>('products', getProducts);
+
   console.log(data);
+
   const getTotalItems = (items: ProductType[]) => (
-  items.reduce((acc:number, item)=> acc + item.amount,0));
-  const handleAddToCart = ( clickedProduct : ProductType) => null;
+    items.reduce((acc: number, item) => acc + item.amount, 0));
+
+  const handleAddToCart = (clickedProduct: ProductType) => (null);
+
   const handleRemoveFromCart = () => null;
+
   if (isLoading) return <LinearProgress />;
   if (error) return <div> <p>Something Went Wrong...</p></div>;
+
   return (
     <Wrapper>
       <Drawer anchor='right' open={isCartOpen} onClose={()=>setIsCartOpen(false)}>
