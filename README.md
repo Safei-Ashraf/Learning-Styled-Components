@@ -28,4 +28,4 @@ yarn start or npm run start
 
 ## Live Demo
 
-- [Click here to view live version](https://breakdance.github.io/breakdance/)
+- [Click here to view live version](https://vibrant-kare-17a35c.netlify.app/)
